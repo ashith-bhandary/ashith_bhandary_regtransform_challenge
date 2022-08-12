@@ -16,10 +16,10 @@ OCR detection.py
 
 
 Task completed 
-1. Successfully compeleted converting dataset to yolov5 format
+1. succesfully completed converting images to yolov5 format
 2. perfomed training for 13 classes and got best model
 3. Done inference for 3 classes as mentioned in the challenge
 4. cropped the bounding box detected.
 5. did not complete OCR
-6.Did not compelete converting text to json file
+6. did not complete converting text to json file.
 
