@@ -5,11 +5,12 @@ import numpy as np
 import easyocr
 import pytesseract
 import os
-
+####--------------------------------- OCR libraries-------------------------
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files (x86)\Tesseract-OCR\tesseract.exe"
 EASY_OCR = easyocr.Reader(['en'])
 
 OCR_TH = 0.2
+####----------------------------- Image Detection---------------------------------------
 def image_detection (frame, model):
     frame = [frame]
     print(f"[INFO] Detecting. . . ")
@@ -23,7 +24,6 @@ def image_detection (frame, model):
 #### ---------------------------- function to extract text from documents --------------------------------------
 
 
-# function to recognize license plate numbers using Tesseract OCR
 def recognize_text(img, coords,reader,region_threshold):
 
     xmin, ymin, xmax, ymax = coords
@@ -36,34 +36,7 @@ def recognize_text(img, coords,reader,region_threshold):
     ocr_results = pytesseract.image_to_string(nplate)
     print(ocr_results)
 
-    # img = cv2.imread(nplate)
-    # img = cv2.cvtColor(nplate)
-    # gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-    # cv2.imwrite('static/gray.png',gray)
 
-
-
-    # ocr_result = reader.readtext(nplate,detail=0, paragraph=True, y_ths = -0.1)
-    # print(ocr_result)
-    #
-    # text = filter_text(region=nplate, ocr_result=ocr_result, region_threshold=region_threshold)
-    #
-    # if len(text) == 1:
-    #     text = text[0].upper()
-    # return text
-
-# def filter_text(region, ocr_result, region_threshold):
-#     rectangle_size = region.shape[0] * region.shape[1]
-#
-#     plate = []
-#     print(ocr_result)
-#     for result in ocr_result:
-#         length = np.sum(np.subtract(result[0][1], result[0][0]))
-#         height = np.sum(np.subtract(result[0][2], result[0][1]))
-#
-#         if length * height / rectangle_size > region_threshold:
-#             plate.append(result[1])
-#     return plate
 ### ------------------------------------ to plot the BBox and results --------------------------------------------------------
 def plotting_boxes(results, frame):
 
@@ -87,24 +60,17 @@ def plotting_boxes(results, frame):
         if row[4] >= 0.55: ### threshold value for detection. We are discarding everything below this value
             print(f"[INFO] Extracting BBox coordinates. . . ")
             x1, y1, x2, y2 = int(row[0]*x_shape), int(row[1]*y_shape), int(row[2]*x_shape), int(row[3]*y_shape) ## BBOx coordniates
-            # text_d = classes[int(labels[i])]
-            # cv2.imwrite("./output/dp.jpg",frame[int(y1):int(y2), int(x1):int(x2)])
+
+
 
             coords = [x1,y1,x2,y2]
             print(coords)
 
             plate_num = recognize_text(img = frame, coords= coords, reader= EASY_OCR, region_threshold= OCR_TH)
 
-
-            # if text_d == 'mask':
             cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2) ## BBox
             cv2.rectangle(frame, (x1, y1-20), (x2, y1), (0, 255,0), -1) ## for text label background
             cv2.putText(frame, f"{plate_num}", (x1, y1), cv2.FONT_HERSHEY_SIMPLEX, 0.5,(255,255,255), 2)
-
-            # cv2.imwrite("./output/np.jpg",frame[int(y1)-25:int(y2)+25, int(x1)-25:int(x2)+25])
-
-
-
 
     return frame
 
