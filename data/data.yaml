@@ -1,0 +1,6 @@
+path: C:\Users\kavin\PycharmProjects\pythonProject\yolov5\data\images_documents
+train: C:\Users\kavin\PycharmProjects\pythonProject\yolov5\data\images_documents\train\images
+val: C:\Users\kavin\PycharmProjects\pythonProject\yolov5\data\images_documents\valid
+
+nc: 13
+names: ['Issuance_date', 'author', 'bullet_enum', 'contact_info', 'data_information', 'foot_note', 'footer', 'header', 'heading', 'note', 'paragraph', 'reference', 'table']
