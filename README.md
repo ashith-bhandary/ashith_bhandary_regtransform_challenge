@@ -21,5 +21,5 @@ Task completed
 3. Done inference for 3 classes as mentioned in the challenge
 4. cropped the bounding box detected.
 5. did not complete OCR
-6.Did not compelete
+6.Did not compelete converting text to json file
 
