@@ -1,11 +1,11 @@
 # ashith_bhandary_regtransform_challenge
 
-<h1> Inference file <h1>
+<h1> Inference file </h1>
 
 OCR detection.py
 
 
-<h2> Planned tasks <h2>
+<h2> Planned tasks </h2>
 
 1. Convert dataset to yolov5 format
 2. perfromed training using  yolov5l model
